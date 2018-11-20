@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、 Git命令用法 【1】 对Git的初步认识1. Git的定义Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。 Git的功能特性从一般的开发者角度来看，git有以下的功能：  从服务器上克隆完整的Git仓库//repository（包括代码和版本信息）到单机上。 在自己的机器上根据不同的开发目的，创建分支，修改代码。 在单机上自己创建的分支上提交代码。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-20T12:46:50.000Z">
+<meta property="og:updated_time" content="2018-11-20T12:52:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="一、 Git命令用法 【1】 对Git的初步认识1. Git的定义Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。 Git的功能特性从一般的开发者角度来看，git有以下的功能：  从服务器上克隆完整的Git仓库//repository（包括代码和版本信息）到单机上。 在自己的机器上根据不同的开发目的，创建分支，修改代码。 在单机上自己创建的分支上提交代码。">
@@ -140,7 +140,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 minutes read (About 2913 words)
+                    19 minutes read (About 2799 words)
                 </span>
                 
             </div>
@@ -191,13 +191,13 @@
 <li>代码保密性差，一旦开发者把整个库clone下来，就可以完全公开所有代码和版本信息。</li>
 </ol>
 <h2 id="【2】-操作Git（以Mac已安装Git，未安装的请参照BlogHexo博客搭建、本地配置及部署到Github）"><a href="#【2】-操作Git（以Mac已安装Git，未安装的请参照BlogHexo博客搭建、本地配置及部署到Github）" class="headerlink" title="【2】 操作Git（以Mac已安装Git，未安装的请参照BlogHexo博客搭建、本地配置及部署到Github）"></a>【2】 操作Git（以Mac已安装Git，未安装的请参照Blog<em>Hexo博客搭建、本地配置及部署到Github）</em></h2><h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><ol>
-<li>打开终端并输入  <font color="#DC143C">//-&gt;后面输入的即是命令行</font></li>
+<li>打开终端并输入  //<strong>-&gt;后面输入的即是命令行</strong></li>
 </ol>
-<hr>
-<p>$-&gt;<font color="#DC143C">mkdir learngit<br>$-&gt;<font color="#DC143C">cd learngit<br>$-&gt;<font color="#DC143C">pwd</font></font></font></p>
-<h2 id="nidexiaokeaiyishangxian-Users-learngit"><a href="#nidexiaokeaiyishangxian-Users-learngit" class="headerlink" title="/nidexiaokeaiyishangxian(Users)/learngit"></a>/nidexiaokeaiyishangxian(Users)/learngit</h2><h2 id="pwd命令用于显示当前文件夹所在目录，这个仓库位于-Users-nidexiaokeaiyishangxian-learngit"><a href="#pwd命令用于显示当前文件夹所在目录，这个仓库位于-Users-nidexiaokeaiyishangxian-learngit" class="headerlink" title="pwd命令用于显示当前文件夹所在目录，这个仓库位于/Users/nidexiaokeaiyishangxian/learngit"></a><strong>pwd</strong>命令用于显示当前文件夹所在目录，这个仓库位于<font color="#DC143C">/Users/nidexiaokeaiyishangxian/learngit</font></h2><p>第二步，通过<strong>git init</strong>命令把这个目录变成Git可以管理的仓库：<br>$-&gt;<font color="#DC143C">git init</font></p>
-<p><font color="#DC143C">Initialized empty Git repository in /nidexiaokeaiyishangxian/learngit/.git/<br>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</font></p>
-<p>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用<strong>ls -ah</strong>命令就可以看见。</p>
+<p>$-&gt;<font color="#DC143C">mkdir learngit<br>$-&gt;<font color="#DC143C">cd learngit<br>$-&gt;<font color="#DC143C">pwd<br><strong>/nidexiaokeaiyishangxian(Users)/learngit</strong></font></font></font></p>
+<p><strong>pwd</strong>命令用于显示当前文件夹所在目录，这个仓库位于<font color="#DC143C">/Users/nidexiaokeaiyishangxian/learngit</font></p>
+<p>第二步，通过<strong>git init</strong>命令把这个目录变成Git可以管理的仓库：<br>$-&gt;&lt;git init</p>
+<p>&lt;Initialized empty Git repository in /nidexiaokeaiyishangxian/learngit/.git/<br>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
+<p>font color=#DC143C&gt;如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用<strong>ls -ah</strong>命令就可以看见。</p>
 <h3 id="2-把文件添加到版本库"><a href="#2-把文件添加到版本库" class="headerlink" title="2. 把文件添加到版本库"></a>2. 把文件添加到版本库</h3><p>编写一个readme.text<br>$-&gt;Git is a version control system<br>$-&gt;Git is free software</p>
 <h2 id="然后自己把readme-text放到learngit目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。"><a href="#然后自己把readme-text放到learngit目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。" class="headerlink" title="然后自己把readme.text放到learngit目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。"></a>然后自己把readme.text放到learngit目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。</h2><p>第一步，用命令<strong>git add</strong>告诉Git，把文件添加到仓库：<br>$-&gt;git add readme.txt</p>
 <h2 id="执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。"><a href="#执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。" class="headerlink" title="执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。"></a>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</h2><p>第二步，用命令<strong>git commit</strong>(提交文件命令)告诉Git，把文件提交到仓库：<br>$-&gt;git commit -m “wrote a readme file”<br>执行以后终端会提示：<br>1 file changed：1个文件被改动（我们新添加的readme.txt文件）；<br>2 insertions：插入了两行内容（readme.txt有两行内容）。</p>
