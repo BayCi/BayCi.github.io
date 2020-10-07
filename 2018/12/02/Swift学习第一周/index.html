@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Swift定义：Swift 是一种新的编程语言，用于编写 iOS 和 macOS 应用。Swift 结合了 C 和 Objective-C 的优点并且不受C兼容性的限制。Swift 采用安全的编程模式并添加了很多新特性，这将使编程更简单，更灵活，也更有趣。Swift 是基于成熟而且倍受喜爱的 Cocoa 和 Cocoa Touch 框架，他的降临将重新定义软件开发。 Swift 的开发从很久之前就">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-02T04:55:07.000Z">
+<meta property="og:updated_time" content="2019-10-08T15:16:47.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift学习第一周">
 <meta name="twitter:description" content="Swift定义：Swift 是一种新的编程语言，用于编写 iOS 和 macOS 应用。Swift 结合了 C 和 Objective-C 的优点并且不受C兼容性的限制。Swift 采用安全的编程模式并添加了很多新特性，这将使编程更简单，更灵活，也更有趣。Swift 是基于成熟而且倍受喜爱的 Cocoa 和 Cocoa Touch 框架，他的降临将重新定义软件开发。 Swift 的开发从很久之前就">
@@ -226,6 +226,7 @@
 <hr>
 <p><font color="#00CED1">实际上是一种特殊的闭包:它是一段能之后被调取的代码。闭包中的代码能访问闭包所建作用域中能得到的变量和函数，即使闭包是在一个不同的作用域被执行的 - 你已经在嵌套函数例子中所看到。你可以使用 {} 来创建一个匿名闭包。使用 in 将参数和返回值类型声明与闭包函数体进行分离。</font></p>
 <figure class="highlight swift hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numbers.<span class="hljs-built_in">map</span>(&#123;</span><br><span class="line">     (number: <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Int</span> <span class="hljs-keyword">in</span></span><br><span class="line">     <span class="hljs-keyword">let</span> result = <span class="hljs-number">3</span> * number</span><br><span class="line">     <span class="hljs-keyword">return</span> result</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
         </div>
         
         
@@ -236,6 +237,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/10/07/GCD/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">iOS进阶-GCD</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -286,17 +294,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        pos
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         0
@@ -306,7 +314,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        tag
+                        Etiqueta
                     </p>
                     <p class="title has-text-weight-normal">
                         1
@@ -316,7 +324,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://user.qzone.qq.com/438655934/infocenter">
-                IKUTI</a>
+                SEGUIR</a>
         </div>
         
         
@@ -365,7 +373,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            tautan
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -403,7 +411,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Categorias
             </h3>
             <ul class="menu-list">
             
@@ -416,7 +424,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            awan tag
+            Nube de etiquetas
         </h3>
         <a href="/tags/blog/" style="font-size: 10px;">blog</a>
     </div>
@@ -430,8 +438,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/07/GCD/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iOS进阶-GCD">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-07T07:08:31.000Z">2020-10-07</time></div>
+                    <a href="/2020/10/07/GCD/" class="has-link-black-ter is-size-6">iOS进阶-GCD</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -517,9 +544,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2018/12/">
@@ -552,7 +590,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                tag
+                Etiquetas
             </h3>
             <ul class="menu-list">
                 
@@ -586,8 +624,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/07/GCD/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iOS进阶-GCD">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-07T07:08:31.000Z">2020-10-07</time></div>
+                    <a href="/2020/10/07/GCD/" class="has-link-black-ter is-size-6">iOS进阶-GCD</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -673,9 +730,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2018/12/">
@@ -708,7 +776,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                tag
+                Etiquetas
             </h3>
             <ul class="menu-list">
                 
@@ -744,7 +812,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 John Doe&nbsp;
+                &copy; 2020 John Doe&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
                 </p>
             </div>
@@ -864,7 +932,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -876,11 +944,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Pos',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Entradas',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };

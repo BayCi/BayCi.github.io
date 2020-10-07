@@ -180,6 +180,78 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-10-07T07:08:31.000Z">2020-10-07</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1242 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/10/07/GCD/">iOS进阶-GCD</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Grand-Central-Dispatch（GCD），可理解为多线程中央调度器"><a href="#Grand-Central-Dispatch（GCD），可理解为多线程中央调度器" class="headerlink" title="Grand Central Dispatch（GCD），可理解为多线程中央调度器"></a>Grand Central Dispatch（GCD），可理解为多线程中央调度器</h1><h3 id="What’s-GCD"><a href="#What’s-GCD" class="headerlink" title="What’s GCD?"></a>What’s GCD?</h3><p>GCD是苹果开发的一个<strong>多核编程的解决方法</strong>，首次在MacOS X10.6推出使用，随后引用到iOS4.0中。</p>
+<h3 id="GCD使用过程中的优势："><a href="#GCD使用过程中的优势：" class="headerlink" title="GCD使用过程中的优势："></a>GCD使用过程中的优势：</h3><p>较<em>NSThread</em>、<em>NSOperationQueue</em>、<em>NSInvocationOperation</em>等技术使用更加方便<br>在实际开发中，使用GCD方法可以达到相同的效果下<code>精简代码</code>，比如可以减少一些方法的定义和方法相互传递之间的变量封装，且项目的<code>逻辑异常清晰</code>。</p>
+<h2 id="GCD的特性："><a href="#GCD的特性：" class="headerlink" title="GCD的特性："></a>GCD的特性：</h2><p>1、GCD会<code>自动管理线程的生命周期</code>（创建线程、调度任务、销毁线程），你只需告诉它要做什么，比如说单次执行，延迟执行……等等，GCD就会自动执行，瓦全不需要你去管理线程相关的事情。GCD是基于纯C语言的多线程管理方案，使用者无需过多参与线程的管理，只需要将想要执行的代码，添加到想要添加的调度队列即可。<br>2、GCD会<code>自动利用更多的CPU内核</code>（比如双核、四核），它存在于libdispatch.dylib这个库中，这是程序动态加载的库类，不需要个人动手导入。<br>3 、GCD可用于<code>多核的并行运算</code>。</p>
+<h2 id="GCD的使用："><a href="#GCD的使用：" class="headerlink" title="GCD的使用："></a>GCD的使用：</h2><pre><code>有两个核心概念：任务和队列
+任务：执行操作，放在block中
+任务的两种执行方式：同步执行（sync）和异步执行（async）
+</code></pre><hr>
+<center><br><img src="https://imgchr.com/i/0d97Y4" alt="同步与异步"><br></center><br>同步执行：dispatch_sync(dispatch_queue_t queue,dispatch_block_t block);<br>异步执行：dispatch_async(dispatch_queue_t queue),dispatch_block_t block);<br>#### 同步和异步的区别：<br>同步：<code>在当前线程中执行任务，会发生堵塞，不具备开启新线程的能力</code>。<br>异步：<code>在另外一条线程中执行，在新的线程中执行任务，具备开启新线程的能力。在代码中的区别就只相差了一个字母</code>。<br>#### <strong>block</strong>的定义<br>类似于指针的定义，用“^”代替了函数指针的“*”符号，指的是以插入“^”为开头标识符的代码块。<br>可使程序块在代码中以内嵌的方式定义，且可以访问在创建它的范围内的可用的变量。<br>—<br><br>## GCD的使用步骤：<br>1、创建一个队列（串行队列或并发队列）<br>        串行队列：只开启一个线程，任务一个接一个地执行<br>        并发队列：开启多个队列，并且同时执行任务<br>2、将任务追加到任务的等待队列中，然后系统就会根据任务类型执行任务（同步执行创建方法dispatch_sync或异步执行创建方法dispatch_async）<br>### 队列(Dispatch Queue):执行等待的队列，用来存放任务的队列，采用FIFO(先进先出)的原则，每读取一个任务，队列中释放一个任务。<br><center><br><img src="https://imgchr.com/i/0d9YJH" alt="队列（Dispatch Queue）示意图"><br></center>
+
+<p>六种常规的队列与任务执行组合方式：<br>1、同步执行+并发队列<br>2、异步执行+并发队列<br>3、同步执行+串行队列<br>4、异步执行+串行队列<br>5、同步执行+主队列<br>6、异步执行+主队列</p>
+<center><br><img src="https://imgchr.com/i/0d9Dw8" alt="不同组合队列的区别"><br></center>
+
+<h3 id="系统提供的dispatch方法"><a href="#系统提供的dispatch方法" class="headerlink" title="系统提供的dispatch方法"></a>系统提供的dispatch方法</h3><p>1.后台执行<br><code>Dispatch_async(dispatch_get_global_queue(0,0), ^{
+ //something
+});</code><br>2.主线程执行<br><code>Dispatch_async(dispatch_get_main_queue(0,0), ^{
+ //something
+});</code><br>3.一次性执行<br><code>static dispatch_once_t onceToken;
+Dispatch_once(&amp;onceToken, ^{
+ //code to be executed
+});</code><br>4.延迟2秒执行<br><code>double delayInseconds = 2.0;
+Dispatch_time_t poopTime = dispatch_time(DISPATCH_TIME_NOW,delayInseconds *NSEC_PER_SEC);
+Dispatch_after(popTime,dispatch_get_main_queue(), ^(void){
+//code to be executed on the main queue after delay
+});</code></p>
+<p>Dispatch_queue_t可自己定义，用 dispatch_queue_create方法<br>例如：<code>dispatch_queue_t urls_queue = dispatch_queue_create(“blog.devtang.com”,NULL);</code></p>
+<h3 id="GCD的高级用法"><a href="#GCD的高级用法" class="headerlink" title="GCD的高级用法"></a>GCD的高级用法</h3><p>使用GCD队列组：dispatch_group<br>异步执行的队列：dispatch_group_async<br>监听group中任务完成的状态：dispatch_group_notify<br>阻塞当前线程，当group任务完成后继续执行：dispatch_group_wait<br>例如：<br><code>dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group,dispatch_get_global_queue(0,0), ^{
+     // 并行执行的线程一
+});
+dispatch_group_async(group,dispatch_get_global_queue(0,0), ^{
+     // 并行执行的线程二
+});
+dispatch_group_notify(group,dispatch_get_global_queue(0,0), ^{
+     //汇总结果
+});</code></p>
+<h3 id="GCD线程间的通信"><a href="#GCD线程间的通信" class="headerlink" title="GCD线程间的通信"></a>GCD线程间的通信</h3><p>在iOS开发中，我们常把点击、滚动、拖拽等UI刷新事件放在主线程中，把耗时的图片下载、文件上传操作放在其他线程里，当其他线程完成了耗时操作，需要回到主线程，这就是线程之间的通信。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-12-02T03:40:58.000Z">2018-12-02</time>
                 
                 
@@ -272,6 +344,7 @@
 <hr>
 <p><font color="#00CED1">实际上是一种特殊的闭包:它是一段能之后被调取的代码。闭包中的代码能访问闭包所建作用域中能得到的变量和函数，即使闭包是在一个不同的作用域被执行的 - 你已经在嵌套函数例子中所看到。你可以使用 {} 来创建一个匿名闭包。使用 in 将参数和返回值类型声明与闭包函数体进行分离。</font></p>
 <figure class="highlight swift hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numbers.<span class="hljs-built_in">map</span>(&#123;</span><br><span class="line">     (number: <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Int</span> <span class="hljs-keyword">in</span></span><br><span class="line">     <span class="hljs-keyword">let</span> result = <span class="hljs-number">3</span> * number</span><br><span class="line">     <span class="hljs-keyword">return</span> result</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
         </div>
         
         
@@ -624,7 +697,7 @@
 <p>10 自动链接</p>
 <p>尖括号</p>
 <p><a href="http://ibruce.info" target="_blank" rel="noopener">http://ibruce.info</a></p>
-<p><a href="mailto:&#x62;&#x75;&#46;&#114;&#x75;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x62;&#x75;&#46;&#114;&#x75;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a></p>
+<p><a href="mailto:&#x62;&#117;&#x2e;&#x72;&#117;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x62;&#117;&#x2e;&#x72;&#117;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a></p>
 <p>1</p>
 <p>2</p>
 <p><a href="http://ibruce.info" target="_blank" rel="noopener">http://ibruce.info</a> </p>
@@ -859,17 +932,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        pos
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         0
@@ -879,7 +952,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        tag
+                        Etiqueta
                     </p>
                     <p class="title has-text-weight-normal">
                         1
@@ -889,7 +962,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://user.qzone.qq.com/438655934/infocenter">
-                IKUTI</a>
+                SEGUIR</a>
         </div>
         
         
@@ -938,7 +1011,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            tautan
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -976,7 +1049,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Categorias
             </h3>
             <ul class="menu-list">
             
@@ -989,7 +1062,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            awan tag
+            Nube de etiquetas
         </h3>
         <a href="/tags/blog/" style="font-size: 10px;">blog</a>
     </div>
@@ -1003,8 +1076,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/07/GCD/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iOS进阶-GCD">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-07T07:08:31.000Z">2020-10-07</time></div>
+                    <a href="/2020/10/07/GCD/" class="has-link-black-ter is-size-6">iOS进阶-GCD</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1090,9 +1182,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2018/12/">
@@ -1125,7 +1228,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                tag
+                Etiquetas
             </h3>
             <ul class="menu-list">
                 
@@ -1159,8 +1262,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/07/GCD/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iOS进阶-GCD">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-07T07:08:31.000Z">2020-10-07</time></div>
+                    <a href="/2020/10/07/GCD/" class="has-link-black-ter is-size-6">iOS进阶-GCD</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1246,9 +1368,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2018/12/">
@@ -1281,7 +1414,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                tag
+                Etiquetas
             </h3>
             <ul class="menu-list">
                 
@@ -1317,7 +1450,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 John Doe&nbsp;
+                &copy; 2020 John Doe&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
                 </p>
             </div>
@@ -1437,7 +1570,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1449,11 +1582,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Pos',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Entradas',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };
